@@ -1,6 +1,6 @@
-package com.dev.Pool._11_st;
+package com.dev.VO._11_st;
 
-import com.dev.Pool.Behavior;
+import com.dev.VO.Behavior;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 

@@ -1,7 +1,7 @@
-package com.dev.Pool.Coupang;
+package com.dev.VO.Coupang;
 
-import com.dev.Pool.Exception.InvalidFlagValueException;
-import com.dev.Pool.Parser;
+import com.dev.VO.Exception.InvalidFlagValueException;
+import com.dev.VO.Parser;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

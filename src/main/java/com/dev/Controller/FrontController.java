@@ -1,6 +1,6 @@
 package com.dev.Controller;
 
-import com.dev.Pool.Pool;
+import com.dev.VO.Pool;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -27,6 +27,7 @@ public class FrontController extends HttpServlet {
 
     @Override
     public void destroy() {
+        // 쓰레드 제거
         Pool.getInstance().getThreadPoolExecutor().shutdown();
     }
 }

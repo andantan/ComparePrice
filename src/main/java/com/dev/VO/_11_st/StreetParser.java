@@ -1,7 +1,7 @@
-package com.dev.Pool._11_st;
+package com.dev.VO._11_st;
 
-import com.dev.Pool.Exception.InvalidFlagValueException;
-import com.dev.Pool.Parser;
+import com.dev.VO.Exception.InvalidFlagValueException;
+import com.dev.VO.Parser;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

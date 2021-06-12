@@ -1,7 +1,7 @@
 package com.dev.Service;
 
 import com.dev.DAO.ProductDAO;
-import com.dev.Pool.Behavior;
+import com.dev.VO.Behavior;
 
 import java.util.List;
 

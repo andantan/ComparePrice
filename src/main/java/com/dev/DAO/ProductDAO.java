@@ -1,8 +1,8 @@
 package com.dev.DAO;
 
-import com.dev.Pool.Behavior;
-import com.dev.Pool.Parser;
-import com.dev.Pool.Pool;
+import com.dev.VO.Behavior;
+import com.dev.VO.Parser;
+import com.dev.VO.Pool;
 import java.sql.ResultSet;
 
 import java.sql.Connection;
@@ -23,6 +23,14 @@ public class ProductDAO extends abstDAO {
     public static ProductDAO getInstance() { return PRODUCT_DAO; }
 
     public int search(String productName, String searchOption) {
+
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        // log 테이블의 productname과 searchoption은 primary key
+        //
+        // productname과 searchoption이 동시에 일치하는 튜플이 존재시 1 반환
+        // prodcutname과 searchoption 둘 중 하나라도 존재하지 않으면 0 반환
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
         int flag = 0;
 
         try {
@@ -46,12 +54,23 @@ public class ProductDAO extends abstDAO {
     }
 
     public void insert(List<Behavior> behaviors) {
+
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        // logDatainsertPipe, urlDataInsertPipe, coupangDataInsertPipe, gmarketDataInsertPipe, streetDataInsertPipe
+        // 5개의 쓰레드를 Threadpool에 데이터 로드 작업 생성 및 처리 요청
+        //
+        // --- Multithread ---
+        // insertLogDataRunnable: log 테이블에 상품 이름, 검색 옵션, 시간 저장
+        // insertUrlDataRunnable: urls 테이블에 상품 이름과 검색 옵션에 따른 url 저장
+        // insertCoupangDataRunnable, insertGmarketDataRunnable, insertstreetDataRunnable: 쇼핑몰 테이블에 정보 저장
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
         final HashMap<Integer, HashMap<String, String>> coupang = behaviors.get(0).getList();
         final HashMap<Integer, HashMap<String, String>> gmarket = behaviors.get(1).getList();
         final HashMap<Integer, HashMap<String, String>> street = behaviors.get(2).getList();
 
         final Runnable insertLogDataRunnable = () -> {
-            Thread.currentThread().setName("executable insertLogData pipe");
+            Thread.currentThread().setName("executable logDatainsertPipe");
             Pool.threadPrint("insertLogDataRunnable");
 
             try {
@@ -75,7 +94,7 @@ public class ProductDAO extends abstDAO {
         final Runnable insertUrlDataRunnable = () -> {
             HashMap<String, String> urls = Parser.getUrlsHashMap();
 
-            Thread.currentThread().setName("executable insertUrlData pipe");
+            Thread.currentThread().setName("executable urlDataInsertPipe");
             Pool.threadPrint("insertUrlDataRunnable");
 
             try {
@@ -102,7 +121,7 @@ public class ProductDAO extends abstDAO {
         };
 
         final Runnable insertCoupangDataRunnable = () -> {
-            Thread.currentThread().setName("executable insertCoupangData pipe");
+            Thread.currentThread().setName("executable coupangDataInsertPipe");
             Pool.threadPrint("insertCoupangDataRunnable");
 
             try {
@@ -121,7 +140,7 @@ public class ProductDAO extends abstDAO {
         };
 
         final Runnable insertGmarketDataRunnable = () -> {
-            Thread.currentThread().setName("executable insertGmarketData pipe");
+            Thread.currentThread().setName("executable gmarketDataInsertPipe");
             Pool.threadPrint("insertGmarketDataRunnable");
 
             try {
@@ -141,7 +160,7 @@ public class ProductDAO extends abstDAO {
 
         final Runnable insertstreetDataRunnable = () -> {
             try {
-                Thread.currentThread().setName("executable insertStreetData pipe");
+                Thread.currentThread().setName("executable streetDataInsertPipe");
 
                 Pool.threadPrint("insertstreetDataRunnable");
 
@@ -198,12 +217,23 @@ public class ProductDAO extends abstDAO {
     }
 
     public List<Behavior> load(String productName, String searchOption) {
+
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        // urlDataLoadingPipe, coupangDataLoadingPipe, gmarketDataLoadingPipe, streetDataLoadingPipe
+        // 4개의 쓰레드를 Threadpool에 데이터 로드 작업 생성 및 처리 요청
+        //
+        // --- Multithread ---
+        // loadUrlDataRunnable: urls 테이블에서 상품 이름과 검색 옵션에 따른 url 로딩 후 com.dev.VO.Parser:setUrl 실행
+        // loadCoupangDataRunnable, loadGmarketDataRunnable, loadStreetDataRunnable: 쇼핑몰 테이블에서 정보 로딩
+        // 4개의 쓰레드 작업이 모두 완료 시에는 각각의 Behavior의 setList 실행 후 List<Behavior> 반환
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
         final HashMap<Integer, HashMap<String, String>> coupangTree = new HashMap<>();
         final HashMap<Integer, HashMap<String, String>> gmarketTree = new HashMap<>();
         final HashMap<Integer, HashMap<String, String>> streetTree = new HashMap<>();
 
         final Runnable loadUrlDataRunnable = () -> {
-            Thread.currentThread().setName("executable loadUrlData pipe");
+            Thread.currentThread().setName("executable urlDataLoadingPipe");
             Pool.threadPrint("loadUrlDataRunnable");
 
             try {
@@ -228,7 +258,7 @@ public class ProductDAO extends abstDAO {
         };
 
         final Runnable loadCoupangDataRunnable = () -> {
-            Thread.currentThread().setName("executable loadCoupangData pipe");
+            Thread.currentThread().setName("executable coupangDataLoadingPipe");
             Pool.threadPrint("loadCoupangDataRunnable");
 
             try {
@@ -253,7 +283,7 @@ public class ProductDAO extends abstDAO {
         };
 
         final Runnable loadGmarketDataRunnable = () -> {
-            Thread.currentThread().setName("executable loadGmarketData pipe");
+            Thread.currentThread().setName("executable gmarketDataLoadingPipe");
             Pool.threadPrint("loadGmarketDataRunnable");
 
             try {
@@ -278,7 +308,7 @@ public class ProductDAO extends abstDAO {
         };
 
         final Runnable loadStreetDataRunnable = () -> {
-            Thread.currentThread().setName("executable loadStreetData pipe");
+            Thread.currentThread().setName("executable streetDataLoadingPipe");
             Pool.threadPrint("loadStreetDataRunnable");
 
             try {
@@ -304,10 +334,10 @@ public class ProductDAO extends abstDAO {
 
         System.out.println(LINE + "\nData loading multithread executed\n" + LINE);
 
-        Future<?> urlRunnableFuture = POOL.getExecutorService().submit(loadUrlDataRunnable);
-        Future<?> coupangRunnableFuture = POOL.getExecutorService().submit(loadCoupangDataRunnable);
-        Future<?> gmarketRunnableFuture = POOL.getExecutorService().submit(loadGmarketDataRunnable);
-        Future<?> streetRunnableFuture = POOL.getExecutorService().submit(loadStreetDataRunnable);
+        final Future<?> urlRunnableFuture = POOL.getExecutorService().submit(loadUrlDataRunnable);
+        final Future<?> coupangRunnableFuture = POOL.getExecutorService().submit(loadCoupangDataRunnable);
+        final Future<?> gmarketRunnableFuture = POOL.getExecutorService().submit(loadGmarketDataRunnable);
+        final Future<?> streetRunnableFuture = POOL.getExecutorService().submit(loadStreetDataRunnable);
 
         while (true) {
             if (urlRunnableFuture.isDone() && coupangRunnableFuture.isDone()

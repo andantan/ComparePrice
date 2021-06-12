@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-25deg, #7797D0 50%, #F8C6BD 50%);
+}
+
+#loader {
+    margin-top: 20px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+#loader-text {
+    margin-top: 150px;
+}
+
+.logo {
+    position: absolute;
+    left: 36.5%;
+    top: 25%;
+    font-size: 45px;;
+    color: white;
+}
+
+.hub-description {
+    position: fixed;
+    top: 90%;
+    right: 3%;
+}
+
+footer > .description {
+    padding-left: 510px;
+    top: 90%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.box {
+    position: absolute;
+    left: 35%;
+    top: 36%;
+    width: 500px;
+    height: 40px;
+    background-color: white;
+    border-radius: 30px;
+}
+
+.action-box {
+    height: 40px;
+    position: static;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.search-option {
+    margin-top: 20px;
+    display: inline-flex;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+}
+
+.search-option-radio {
+    display: none;
+}
+
+.search-option-label {
+    text-align: center;
+    width: 105px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-family: sans-serif;
+    background: #D4A8A0;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.search-option-label:not(:last-of-type) {
+    border-right: 1px solid #006b56;
+}
+
+.search-option-radio:checked + .search-option-label {
+    color: white;
+    background: #0E5993;
+}
+
+#search-icon {
+    font-size: 15px;
+    padding-left: 17.5px;
+    padding-right: 8px;
+}
+
+#search-clear {
+    padding-left: 13px;
+    cursor: pointer;
+}
+
+#search-product {
+    height: 30px;
+    width: 400px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}

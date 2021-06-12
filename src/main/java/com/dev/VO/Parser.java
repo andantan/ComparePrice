@@ -1,6 +1,6 @@
-package com.dev.Pool;
+package com.dev.VO;
 
-import com.dev.Pool.Exception.InvalidFlagValueException;
+import com.dev.VO.Exception.InvalidFlagValueException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,6 +11,12 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public abstract class Parser {
+
+    // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    // 상품 이름과 검색 옵션에 맞는 url을 설정 및
+    // 쇼핑물에 접속한 후 상속받은 Parser에게 html 문서를 전달
+    // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
     private static final String WEB_DRIVE_ID = "webdriver.chrome.driver";
     private static final String WEB_DRIVER_PATH = "C:/Dev/chromedriver.exe";
     private static final int SCROLL_LIMIT = 20;
@@ -65,6 +71,13 @@ public abstract class Parser {
     }
 
     private Document getPageSourceBySelenium(String url) {
+
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        // Jsoup은 Javascript를 핸들링할 수 없기 떄문에 Javascript로 구현된 이미지 Lazy loading을
+        // Selenium이 직접 쇼핑몰에 접속한 후 직접 아래로 스크롤(이미지 로드)한 후 Selenium이 html문서를 받아옴
+        // 받아온 html은 Jsoup이 파싱
+        // +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
         System.setProperty(WEB_DRIVE_ID, WEB_DRIVER_PATH);
 
         WebDriver driver = new ChromeDriver();

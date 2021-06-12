@@ -1,4 +1,4 @@
-package com.dev.Pool.Exception;
+package com.dev.VO.Exception;
 
 public class InvalidFlagValueException extends Exception {
     public InvalidFlagValueException() {
