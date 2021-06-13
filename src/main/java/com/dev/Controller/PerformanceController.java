@@ -48,6 +48,6 @@ public class PerformanceController implements Controller {
         request.setAttribute("searchOption", searchOption);
         request.setAttribute("behaviors", behaviors);
 
-        HttpUtil.forward(request, response, "/result.jsp");
+        HttpUtil.forward(request, response, "./result/result.jsp");
     }
 }

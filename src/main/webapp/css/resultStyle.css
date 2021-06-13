@@ -156,10 +156,11 @@ main > .main-col-names {
 
 .product-item > .product-item-description {
     display: inline-block;
+    height: 130px;
 }
 
 .product-item-link {
-    height: 180px;
+    height: 250px;
     display: flex;
     align-items: center;
 }
@@ -174,16 +175,13 @@ main > .main-col-names {
     font-weight: bold;
     font-size: 30px;
     color: #A1260F;
-    padding-bottom: 7px;
+    margin-top: 20px;
+    margin-left: 5px;
 }
 
 .product-item-title {
-    height: 110px;
     font-weight: bold;
     font-size: 18px;
-    display: flex;
-    align-items: center;
-    margin-top: 18px;
 }
 
 .product-item-link > a {
@@ -211,6 +209,7 @@ main > .main-col-names {
 
 .product-item-star {
     display: inline-block;
+    margin-top: 10px;
 }
 
 .star-rating-count {

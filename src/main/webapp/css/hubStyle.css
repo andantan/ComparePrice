@@ -35,8 +35,8 @@ body {
 }
 
 .logo {
-    position: absolute;
-    left: 36.5%;
+    position: fixed;
+    left: 38%;
     top: 25%;
     font-size: 45px;;
     color: white;
@@ -49,15 +49,15 @@ body {
 }
 
 footer > .description {
-    padding-left: 510px;
     top: 90%;
     font-size: 20px;
     font-weight: bold;
+    right: 10%;
 }
 
 .box {
-    position: absolute;
-    left: 35%;
+    position: fixed;
+    left: 37%;
     top: 36%;
     width: 500px;
     height: 40px;

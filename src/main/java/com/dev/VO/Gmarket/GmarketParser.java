@@ -35,9 +35,8 @@ public class GmarketParser extends Parser {
         Elements elements = document.getElementsByClass("box__component-itemcard");
         ArrayList<Element> products = new ArrayList<>();
 
-        for (int i = 0; i < PRODUCT_NEEDS; i++) {
+        for (int i = 0; i < PRODUCT_NEEDS; i++)
             products.add(elements.get(i));
-        }
 
         return products;
     }

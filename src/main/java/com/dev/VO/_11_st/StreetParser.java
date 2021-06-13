@@ -35,9 +35,8 @@ public class StreetParser extends Parser {
         Elements elements = document.getElementsByClass("c_listing c_listing_view_type_list").get(0).getElementsByTag("li");
         ArrayList<Element> products = new ArrayList<>();
 
-        for (int i = 0; i < PRODUCT_NEEDS; i++) {
+        for (int i = 0; i < PRODUCT_NEEDS; i++)
             products.add(elements.get(i));
-        }
 
         return products;
     }

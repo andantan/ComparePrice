@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
           crossorigin="anonymous"/>
-    <link rel="stylesheet" href="./css/resultStyle.css">
+    <link rel="stylesheet" href="../css/resultStyle.css">
 </head>
 <body>
 
@@ -23,7 +23,7 @@
     %>
 
     <div class="logo">
-        <h3><a href="${pageContext.request.contextPath}/hub.jsp">CompareProducts</a></h3>
+        <h3><a href="${pageContext.request.contextPath}../hub.jsp">CompareProducts</a></h3>
     </div>
     <header>
         <div class="box">

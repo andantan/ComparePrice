@@ -26,8 +26,8 @@
 
                 setTimeout(function() {
                     $('#loader-text').text('데이터를 정보화하는 중입니다.')
-                }, 6500)
-            }, 1000)
+                }, 6000)
+            }, 1500)
         };
     </script>
 </head>
