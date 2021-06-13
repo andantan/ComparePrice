@@ -29,6 +29,7 @@ CompareProducts: 원하는 상품과 판매량순, 최신순, 높은 가격순, 
 상위 10개의 상품 항목을 크롤링하여 총 30개의 상품을 한 페이지에서 비교할 수 있음.
 
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
 프로젝트 구조
 
 com.dev.Controller
@@ -67,4 +68,5 @@ com.dev.VO.Gmarket
 
 com.dev.VO.Exception
   - InvalidFlagValueException (class)
+
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
