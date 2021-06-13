@@ -8,7 +8,7 @@ public abstract class abstDAO {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/compareprice?characterEncoding=UTF-8", "root", "wjsrbqls123!");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/compareprice?characterEncoding=UTF-8", "root", "1234");
         } catch (ClassNotFoundException | SQLException throwables) {
             System.out.println("[com.dev.DAO.abstDAO::connect] " + throwables.getMessage());
         }
