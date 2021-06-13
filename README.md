@@ -22,6 +22,7 @@ Java Enterprise
   okhttp-3.11.0 (Project library)
   
 Jsoup library: jsoup-1-13.1
+
 Selenium library: okhttp-3.11.0
 
 CompareProducts: 원하는 상품과 판매량순, 최신순, 높은 가격순, 낮은 가격순 중 원하는 옵션에 따라 국내 상위 3개의 쇼핑몰 쿠팡, G마켓, 11번가에서 검색 옵션에 따른
