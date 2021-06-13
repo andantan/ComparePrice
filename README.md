@@ -4,7 +4,7 @@ IntelliJ IDEA Ultimate 2021.1 x64
 
 Java Enterprise
 - Project Structure - 
-  Web(Maven + Tomcat) / 
+  Web(Maven & Tomcat) / 
   Project SDK: 15 version 15.0.1 / 
   Project language level: SDK default (15 - Text blocks)
 
@@ -29,3 +29,40 @@ CompareProducts: 원하는 상품과 판매량순, 최신순, 높은 가격순, 
 상위 10개의 상품 항목을 크롤링하여 총 30개의 상품을 한 페이지에서 비교할 수 있음.
 
 프로젝트 구조
+
+com.dev.Controller
+  - Controller (interface)
+  - FrontController (class)
+  - HttpUtil (class)
+  - PerformanceController (class)
+
+com.dev.DAO
+  - abstDAO (abstract class)
+  - ProductDAO (class)
+
+com.dev.Service
+  - Service (class)
+
+com.dev.VO
+  - _11_st (Package)
+  - Coupang (Package)
+  - Gmarket (Package)
+  - Exception (Package)
+  - Behavior (interface)
+  - Parser (abstract class)
+  - Pool (class)
+
+com.dev.VO._11_st
+  - StreetBehavior (class)
+  - StreetParser (class)
+
+com.dev.VO.Coupang
+  - CoupangBehavior (class)
+  - CoupangParser (class)
+
+com.dev.VO.Gmarket
+  - GmarketBehavior (class)
+  - GmarketParser (class)
+
+com.dev.VO.Exception
+  - InvalidFlagValueException (class)
