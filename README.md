@@ -1,6 +1,6 @@
 CompareProducts - 202033028 전규빈
 
-IntelliJ IDEA Ultimate 2021.1 x64
+IntelliJ IDEA Ultimate 2021.2 x64
 
 Java Enterprise
 - Project Structure - 
