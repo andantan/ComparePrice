@@ -32,6 +32,7 @@ public final class GmarketBehavior implements Behavior {
 
     @Override
     public synchronized void initialize(String[] searchSet) {
+        sorter.put("랭킹순", "&s=7");
         sorter.put("판매량순", "&s=8");
         sorter.put("최신순", "&s=3");
         sorter.put("높은 가격순", "&s=2");

@@ -46,10 +46,11 @@
                 <i class="fas fa-eraser" id="search-clear" onclick="document.getElementById('search-product').value = ''"></i>
                 <input type="submit" id="submit-product" style="visibility: hidden;" onclick="loading()">
                 <div class="search-option">
-                    <input class="search-option-radio" type="radio" value="판매량순" name="option" id="option1" checked="checked"><label class="search-option-label" for="option1">판매량순</label>
-                    <input class="search-option-radio" type="radio" value="최신순" name="option" id="option2"><label class="search-option-label" for="option2">최신순</label>
-                    <input class="search-option-radio" type="radio" value="높은 가격순" name="option" id="option3"><label class="search-option-label" for="option3">높은 가격순</label>
-                    <input class="search-option-radio" type="radio" value="낮은 가격순" name="option" id="option4"><label class="search-option-label" for="option4">낮은 가격순</label>
+                    <input class="search-option-radio" type="radio" value="랭킹순" name="option" id="option1" checked="checked"><label class="search-option-label" for="option1">랭킹순</label>
+                    <input class="search-option-radio" type="radio" value="판매량순" name="option" id="option2"><label class="search-option-label" for="option2">판매량순</label>
+                    <input class="search-option-radio" type="radio" value="최신순" name="option" id="option3"><label class="search-option-label" for="option3">최신순</label>
+                    <input class="search-option-radio" type="radio" value="높은 가격순" name="option" id="option4"><label class="search-option-label" for="option4">높은 가격순</label>
+                    <input class="search-option-radio" type="radio" value="낮은 가격순" name="option" id="option5"><label class="search-option-label" for="option5">낮은 가격순</label>
                 </div>
             </form>
         </div>

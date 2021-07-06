@@ -17,6 +17,7 @@ public class CoupangParser extends Parser {
 
     public static CoupangParser getInstance() { return COUPANG_PARSER; }
 
+    // TODO: image src
     @Override
     protected Document getDocument(String keyword, String sorter, String webPage) {
         Document document = null;
@@ -24,37 +25,55 @@ public class CoupangParser extends Parser {
         try {
             document = super.getDocument(keyword, sorter, webPage);
         } catch (InvalidFlagValueException ERO) {
-            System.out.println("[TermProjectPrototype.Crawler._11_st.CoupangParser::getDocument]: " + ERO.getMessage());
+            System.out.println("[com.dev.VO.Coupang.CoupangParser::getDocument]: " + ERO.getMessage());
             ERO.printStackTrace();
         }
 
         return document;
     }
 
+    // TODO: I HAVE NO IDEA THAT WHY IGNORE SOME PRODUCTS....
     protected ArrayList<Element> getSearchProduct(Document document) {
-        Elements elements = document.getElementsByClass("search-product");
+        Elements elements = document.getElementById("productList").getElementsByClass("search-product");
         ArrayList<Element> products = new ArrayList<>();
+        Element element;
+        int size = PRODUCT_NEEDS;
 
-        for (int i = 0; i < PRODUCT_NEEDS; i++)
-            products.add(elements.get(i));
+        for (int i = 0; i < size; i++) {
+            element = elements.get(i);
+
+            if (element.attr("class").equals("search-product ")) products.add(element);
+            else size++;
+        }
 
         return products;
     }
 
     protected HashMap<String, String> getProductInfo(Element element, int size) {
         HashMap<String, String> productInfo = new HashMap<>();
-        String productRatingStar = "null";
+        Elements meta = element.getElementsByClass("other-info");
+        Elements metaS1;
+        Elements metaS2;
+        String productRatingStar = "null%";
         String productRatingCount = "(0)";
 
-        if (element.getElementsByClass("other-info").size() != 0) {
-            productRatingStar = Integer.toString((int) (Double.parseDouble(element.getElementsByClass("rating-star").get(0).getElementsByTag("em").get(0).text()) * 20));
-            productRatingCount = element.getElementsByClass("rating-star").get(0).getElementsByClass("rating-total-count").get(0).text();
+        if (meta.size() != 0) {
+            metaS1 = meta.get(0).getElementsByClass("rating-star");
+            metaS2 = meta.get(0).getElementsByClass("rating-total-count");
+
+            if (metaS1.size() != 0) {
+                productRatingStar = Integer.toString((int) (Double.parseDouble(metaS1.get(0).getElementsByTag("em").get(0).text()) * 20));
+                productRatingStar += "%";
+            }
+
+            if (metaS2.size() != 0)
+                productRatingCount = metaS2.get(0).getElementsByClass("rating-total-count").get(0).text();
         }
 
         productInfo.put("productName", element.getElementsByClass("name").get(0).text());
         productInfo.put("productHref", String.format("https://www.coupang.com%s", element.getElementsByTag("a").get(0).attr("href")));
         productInfo.put("productPrice", element.getElementsByClass("price-value").get(0).text());
-        productInfo.put("productRatingStar", String.format("%s%%", productRatingStar));
+        productInfo.put("productRatingStar", productRatingStar);
         productInfo.put("productRatingCount", productRatingCount);
 
         if (size < 8)

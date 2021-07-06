@@ -32,10 +32,11 @@ public final class StreetBehavior implements Behavior {
 
     @Override
     public synchronized void initialize(String[] searchSet) {
-        sorter.put("판매량순", "#sortCd%%A%%누적%20판매순%%4");
-        sorter.put("최신순", "#sortCd%%N%%최신순%%10");
-        sorter.put("높은 가격순", "#sortCd%%H%%높은%20가격순%%6");
-        sorter.put("낮은 가격순", "#sortCd%%L%%낮은%20가격순%%8");
+        sorter.put("랭킹순", "#sortCd%%NP%%11번가%20인기순%%3$$viewType%%L%%list%%");
+        sorter.put("판매량순", "#sortCd%%A%%누적%20판매순%%$$viewType%%L%%list%%");
+        sorter.put("최신순", "#sortCd%%N%%최신순%%$$viewType%%L%%list%%");
+        sorter.put("높은 가격순", "#sortCd%%H%%높은%20가격순%%$$viewType%%L%%list%%");
+        sorter.put("낮은 가격순", "#sortCd%%L%%낮은%20가격순%%$$viewType%%L%%list%%");
 
         searchProduct = searchSet[0];
         searchOption = searchSet[1];
@@ -63,7 +64,7 @@ public final class StreetBehavior implements Behavior {
             System.out.println("Product link: " + extractedProductInfo.get(i).get("productHref"));
             System.out.println("Product price: " + extractedProductInfo.get(i).get("productPrice") + "원");
             System.out.println("Product image source: " + extractedProductInfo.get(i).get("productImageSrc"));
-            System.out.println("Product rating: " + extractedProductInfo.get(i) .get("productRatingStar"));
+            System.out.println("Product rating: " + extractedProductInfo.get(i).get("productRatingStar"));
             System.out.println("Product rating count: " + extractedProductInfo.get(i).get("productRatingCount"));
             System.out.print("-------------------------------------------------------------------------------");
             System.out.println("-------------------------------------------------------------------------------");

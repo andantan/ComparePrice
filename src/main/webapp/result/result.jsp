@@ -16,7 +16,7 @@
     <%
         response.setContentType("text/html;charset=UTF-8");
 
-        String[] searchOptions = new String[] { "판매량순", "최신순", "높은 가격순", "낮은 가격순" };
+        String[] searchOptions = new String[] { "랭킹순", "판매량순", "최신순", "높은 가격순", "낮은 가격순" };
         HashMap<String, String> urls = (HashMap<String, String>) request.getAttribute("urls");
         List<Behavior> behaviors = (List<Behavior>) request.getAttribute("behaviors");
         String searchOption = (String) request.getAttribute("searchOption");
@@ -35,7 +35,7 @@
                 <div class="search-io">
                     <div class="search-option">
                         <%
-                            for (int i = 0; i < 4; i++) {
+                            for (int i = 0; i < 5; i++) {
                                 if (searchOption.equals(searchOptions[i]))
                                     out.print(String.format("<input class=\"search-option-radio\" type=\"radio\" value=\"%s\" id=\"option%d\" name=\"option\" checked=\"checked\">", searchOptions[i], i + 1));
                                 else

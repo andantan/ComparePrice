@@ -32,6 +32,7 @@ public final class CoupangBehavior implements Behavior {
 
     @Override
     public synchronized void initialize(String[] searchSet) {
+        sorter.put("랭킹순", "&sorter=scoreDesc");
         sorter.put("판매량순", "&sorter=saleCountDesc");
         sorter.put("최신순", "&sorter=latestAsc");
         sorter.put("높은 가격순", "&sorter=salePriceDesc");

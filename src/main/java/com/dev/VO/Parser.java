@@ -84,7 +84,7 @@ public abstract class Parser {
 
         driver.get(url);
 
-        for (int i = 1; i < SCROLL_LIMIT + 1; i++) {
+        for (int i = 10; i < SCROLL_LIMIT + 1; i++) {
             ((JavascriptExecutor) driver).executeScript(String.format("window.scrollTo(0, %d)", i * 100));
 
             try {
